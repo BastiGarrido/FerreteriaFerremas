@@ -29,3 +29,7 @@ body {
 .btn-pink:hover {
   background-color: #e91e63;
 }
+
+h3 {
+  text-align: center;
+}
