@@ -1,0 +1,26 @@
+/* Colores personalizados */
+.fondo-rosa {
+  background-color: #ff2e92;
+}
+
+.fondo-naranja {
+  background-color: #ffa869;
+}
+
+/* Imagen destacada */
+.sombra-imagen {
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover footer */
+footer a:hover {
+  text-decoration: underline;
+  color: #ffa869;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .navbar-brand img {
+    height: 45px;
+  }
+}

@@ -1,0 +1,26 @@
+# Archivos de Python
+__pycache__/
+*.pyc
+
+# Entornos virtuales (si decides usar uno después)
+venv/
+env/
+
+# Archivos de configuración
+*.sqlite3
+*.log
+
+# Archivos de Django
+db.sqlite3
+/staticfiles/
+
+# Archivos de sistema
+.DS_Store
+*.swp
+
+# Configuración de VSCode o PyCharm
+.vscode/
+.idea/
+
+# Secretos
+*.env
