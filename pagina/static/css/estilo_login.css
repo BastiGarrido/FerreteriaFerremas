@@ -1,0 +1,31 @@
+body {
+  background-color: #ffffff;
+}
+
+.fondo-rosa {
+  background-color: #ff2e92;
+}
+
+.fondo-naranja {
+  background-color: #ffa869;
+}
+
+.campo {
+  background-color: #ffc7b0;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+}
+
+.btn-pink {
+  background-color: #ff2e92;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-pink:hover {
+  background-color: #e91e63;
+}
