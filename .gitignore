@@ -24,3 +24,4 @@ db.sqlite3
 
 # Secretos
 *.env
+firebase_cred.json
