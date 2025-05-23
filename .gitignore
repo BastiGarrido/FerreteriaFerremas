@@ -1,27 +1,28 @@
-# Archivos de Python
+# Bytecode de Python
 __pycache__/
-*.pyc
+*.py[cod]
 
-# Entornos virtuales (si decides usar uno después)
-venv/
+# Entornos virtuales
 env/
+venv/
 
-# Archivos de configuración
+# Base de datos SQLite y archivos de log
 *.sqlite3
 *.log
-
-# Archivos de Django
 db.sqlite3
+
+# Archivos generados por Django
 /staticfiles/
+/media/
 
 # Archivos de sistema
 .DS_Store
 *.swp
 
-# Configuración de VSCode o PyCharm
+# Configuraciones del editor
 .vscode/
 .idea/
 
-# Secretos
+# Variables de entorno y claves privadas
 *.env
 firebase_cred.json
