@@ -1,25 +1,30 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
-import { auth } from "./firebase-config.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+import { ref, set } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+import { auth, database } from "./firebase-config.js"; // ✅ usa tu archivo centralizado
 
-document.getElementById("registerForm").addEventListener("submit", function (e) {
+document.getElementById("registerForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
   const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Opcional: guardar el nombre de usuario en el perfil
-      return updateProfile(userCredential.user, {
-        displayName: username
-      });
-    })
-    .then(() => {
-      alert("Cuenta creada correctamente");
-      window.location.href = "/login/";
-    })
-    .catch((error) => {
-      alert("Error: " + error.message);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Guardar datos en Firebase Realtime Database
+    await set(ref(database, 'usuarios/' + user.uid), {
+      uid: user.uid,
+      correo: email,
+      usuario: username
     });
+
+    alert("✅ Registro exitoso");
+    window.location.href = "/login/";
+
+  } catch (error) {
+    console.error("🛑 Error:", error);
+    alert("Error: " + error.message);
+  }
 });
