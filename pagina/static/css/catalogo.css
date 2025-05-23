@@ -1,0 +1,9 @@
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+}
+
+.badge.bg-warning {
+    font-size: 0.75rem;
+}

@@ -1,0 +1,53 @@
+
+/* Estilo general de los bloques */
+.seccion-nosotros {
+  border-radius: 30px;
+  padding: 30px;
+  margin-bottom: 30px;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.seccion-nosotros img {
+  max-width: 300px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.seccion-nosotros h2 {
+  font-weight: bold;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.seccion-nosotros p {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+.fondo-rojo {
+  background-color: #FF5A5F;
+}
+
+.fondo-naranja {
+  background-color: #FFA95A;
+}
+
+.fondo-amarillo {
+  background-color: #FFD966;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .seccion-nosotros {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .seccion-nosotros img {
+    margin-top: 20px;
+  }
+}

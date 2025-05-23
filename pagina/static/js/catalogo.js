@@ -3,15 +3,16 @@ const API_BASE = "/api";
 let productos = [];
 let categorias = [];
 let marcas = [];
+let paginaActual = 1;
+let productosPorPagina = 6;
 
 const contenedor = document.getElementById("contenedorProductos");
 const searchInput = document.getElementById("searchInput");
 const filtroCategoria = document.getElementById("filtroCategoria");
+filtroCategoria && (filtroCategoria.value = "");
 const filtroMarca = document.getElementById("filtroMarca");
 const filtroPrecio = document.getElementById("filtroPrecio");
 const filtroDestacado = document.getElementById("filtroDestacado");
-const productosPorPagina = 6;
-let paginaActual = 1;
 
 async function cargarDatos() {
   try {
@@ -33,6 +34,7 @@ async function cargarDatos() {
 }
 
 function llenarFiltros() {
+  if (!filtroCategoria || !filtroMarca || !filtroDestacado) return;
   filtroCategoria.innerHTML = '<option value="">Todas</option>';
   filtroMarca.innerHTML = '<option value="">Todas</option>';
   filtroDestacado.innerHTML = '<option value="">Todos</option><option value="true">Solo destacados</option><option value="false">No destacados</option>';
@@ -87,6 +89,10 @@ function mostrarProductos(lista) {
             <h5 class="card-title">${p.nombre}</h5>
             <p class="card-text">${p.descripcion?.slice(0, 100)}...</p>
             <span class="badge bg-success">${precioCLP}</span>
+            <div class="d-flex justify-content-between mt-2">
+              <a href="/producto/${p.id}/" class="btn btn-outline-secondary btn-sm">Ver producto</a>
+              <button class="btn btn-warning btn-sm" onclick='agregarAlCarrito({id: ${p.id}, nombre: "${p.nombre}", precio: ${p.precio}, imagen: "${p.imagen}"})'>Agregar al Carro</button>
+            </div>
           </div>
         </div>
       </div>
@@ -152,6 +158,19 @@ function buscarProductos() {
   );
 
   mostrarProductos(lista);
+}
+
+function agregarAlCarrito(producto) {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const existe = carrito.find(p => p.id === producto.id);
+
+  if (existe) {
+    existe.cantidad += 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert("Producto agregado al carrito");
 }
 
 cargarDatos();
