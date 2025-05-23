@@ -16,3 +16,6 @@ def nosotros(request):
 
 def contacto(request):
     return render(request, 'contacto.html')
+
+def catalogo(request):
+    return render(request, 'catalogo.html')
