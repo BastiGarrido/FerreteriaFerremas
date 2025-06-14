@@ -8,7 +8,7 @@ import os
 # Ruta al archivo de credenciales
 cred_path = os.path.join(os.path.dirname(__file__), '..', 'firebase_cred.json')
 
-if not firebase_admin._apps:
+if os.path.exists(cred_path) and not firebase_admin._apps:
     cred = credentials.Certificate(cred_path)
     firebase_admin.initialize_app(cred, {
         'databaseURL': 'https://ferremas-1d1cb-default-rtdb.firebaseio.com/'
