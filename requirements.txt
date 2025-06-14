@@ -1,0 +1,5 @@
+django==5.2.1
+djangorestframework
+firebase-admin
+transbank
+Pillow
