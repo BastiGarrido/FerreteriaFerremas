@@ -3,6 +3,11 @@ from .models import Producto
 
 from transbank.webpay.webpay_plus.transaction import Transaction
 from transbank.common.integration_type import IntegrationType
+
+try:
+    from transbank.common.options import WebpayOptions
+except Exception:  # pragma: no cover - fallback for old versions
+    WebpayOptions = None
 import uuid
 
 # CONFIGURACIÓN GLOBAL (reemplaza esto por tus credenciales en producción)
@@ -11,7 +16,18 @@ api_key = 'X'
 integration_type = IntegrationType.TEST
 
 # INSTANCIA GLOBAL del objeto Transaction
-transaction = Transaction(commerce_code, api_key, integration_type)
+try:
+    transaction = Transaction(commerce_code, api_key, integration_type)
+except TypeError:
+    if WebpayOptions:
+        options = WebpayOptions(
+            commerce_code=commerce_code,
+            api_key=api_key,
+            integration_type=integration_type,
+        )
+        transaction = Transaction(options)
+    else:  # Versión muy antigua
+        transaction = Transaction()
 
 def inicio(request):
     return render(request, 'inicio.html')
